@@ -26,12 +26,16 @@
                         logout_form.submit();
                     });
                 </script>
+                <a href="{{ route('order.create') }}">Create Order</a>
             @endauth
             @guest
                 <a href="{{ route('register.index') }}">Register</a>
                 <a href="{{ route('login.index') }}">Login</a>
             @endguest
         </nav>
+        @auth
+                <h1 class="text-center">Добро пожаловать: {{ Auth::user()->email }}</h1>
+        @endauth
     </header>
     @yield('content')
 
