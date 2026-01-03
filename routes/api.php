@@ -18,16 +18,9 @@ Route::controller(UserControllerApi::class)
     });
 
 Route::middleware("auth:sanctum")
-->prefix("courses")
-->group(function () {
-    Route::get("", [CourseControllerApi::class, 'GetAll']);
-    Route::get("{course}", [LessonControllerApi::class, "GetAll"]);
-});
-
-// Route::middleware("auth:sanctum")
-//     ->controller(CourseControllerApi::class)
-//     ->prefix("courses")
-//     ->group(function () {
-//         Route::get("", "GetAll");
-//         Route::get("{course}", "GetById");
-//     });
+    ->prefix("courses")
+    ->group(function () {
+        Route::get("", [CourseControllerApi::class, 'GetAll']);
+        Route::get("{course}", [LessonControllerApi::class, "GetAll"]);
+        Route::post("{course}/buy", [CourseControllerApi::class, 'Buy']);
+    });

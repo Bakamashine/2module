@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterApiRequest;
 use App\Http\Requests\RegisterRequest;
+use App\Models\Student;
 use App\Models\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class UserControllerApi extends Controller
 {
     public function Register(RegisterApiRequest $request)
     {
-        $user = User::create([
+        $user = Student::create([
             "email" => $request->email,
             "password" => bcrypt($request->password)
         ]);
@@ -25,7 +26,7 @@ class UserControllerApi extends Controller
 
     public function Login(LoginRequest $request)
     {
-        $user = User::firstWhere("email", $request->email);
+        $user = Student::firstWhere("email", $request->email);
         if ($user && Hash::check($request->password, $user->password)) {
             return response()->json([
                 "token" => $user->createToken("user")->plainTextToken
