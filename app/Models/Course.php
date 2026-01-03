@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Course extends Model
 {
-    /** @use HasFactory<\Database\Factories\OrderFactory> */
+    /** @use HasFactory<\Database\Factories\courseFactory> */
     use HasFactory;
 
     public $timestamps = false;
@@ -16,8 +16,8 @@ class Order extends Model
         "title",
         "description",
         "duration",
-        "image",
         "price",
+        "image",
         "start",
         "end",
     ];

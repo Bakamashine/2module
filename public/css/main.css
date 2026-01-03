@@ -11,18 +11,18 @@
     margin-bottom: 30px;
 }
 
-.order-img-size {
+.course-img-size {
     width: 300px;
     height: 300px;
 }
 
-.admin-order {
+.admin-course {
     display: flex;
     justify-content: space-around;
 }
 
-.admin-order-box {
+.admin-course-box {
     margin-right: 10px;
     padding: 10px;
-    border: 1px solid black;
+    bcourse: 1px solid black;
 }

@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class StoreOrderRequest extends FormRequest
+class RegisterApiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +24,8 @@ class StoreOrderRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title" => ['required', 'string', 'max:30'],
-            "description" => ['string', 'max:100', 'nullable'],
-            "price" => ['required', 'numeric', 'between:00.00,99.99'],
-            "duration" => ['required', 'numeric', 'min:1'],
-            "image" => ['required', "image", 'mimetypes:image/png,image/jpeg',],
-            "start" => ['required', 'date'],
-            "end" => ['required', 'date']
+            'email' => ['required', 'email', 'max:255', 'string', Rule::unique(User::class)],
+            'password' => ['required', 'string', 'max:255', 'min:8']
         ];
     }
 }

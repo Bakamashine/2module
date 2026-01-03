@@ -26,7 +26,7 @@
                         logout_form.submit();
                     });
                 </script>
-                <a href="{{ route('order.create') }}">Create Order</a>
+                <a href="{{ route('course.create') }}">Create course</a>
                 <a href="{{ route('lesson.create') }}">Create Lesson</a>
             @endauth
             @guest

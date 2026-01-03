@@ -5,9 +5,9 @@
 @section('content')
     @if (count($lesson) > 0)
         <h3 class="text-center">Lesson</h3>
-        <div class="admin-order">
+        <div class="admin-course">
             @foreach ($lesson as $value)
-                <div class="admin-order-box">
+                <div class="admin-course-box">
                     <p>Title: {{ $value->title }}</p>
                     <p>Description: {{ $value->description ?? 'null' }}</p>
                     <p>Duration: {{ $value->duration }}</p>
