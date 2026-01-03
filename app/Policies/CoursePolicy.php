@@ -6,7 +6,7 @@ use App\Models\course;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class coursePolicy
+class CoursePolicy
 {
     /**
      * Determine whether the user can view any models.

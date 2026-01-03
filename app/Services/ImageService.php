@@ -14,7 +14,8 @@ class ImageService implements IImageService
     {
         if ($request->hasFile($key)) {
             $newName = "mpic_" . Str::random(15) . "." . $request->file($key)->extension();
-            $path = Storage::url($request->file($key)->storeAs($path, $newName, self::$disk));
+            // $path = Storage::url($request->file($key)->storeAs($path, $newName, self::$disk));
+            $path = $request->file($key)->storeAs($path, $newName, self::$disk);
             return $path;
         }
     }

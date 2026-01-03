@@ -1,14 +1,14 @@
-@extends("layouts.basic")
-@section("title")
+@extends('layouts.basic')
+@section('title')
     course
 @endsection
-@section("content")
+@section('content')
     @if (count($course) > 0)
         <h3 class="text-center">course</h3>
         <div class="admin-course">
             @foreach ($course as $value)
                 <div class="admin-course-box">
-                    <img src="{{ $value->image }}" class="course-img-size">
+                    <img src="{{ asset('storage') . '/' . $value->image }}" class="course-img-size">
                     <p>Title: {{ $value->title }}</p>
                     <p>Description: {{ $value->description ?? 'null' }}</p>
                     <p>Duration: {{ $value->duration }}</p>

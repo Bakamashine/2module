@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\course>
  */
-class courseFactory extends Factory
+class CourseFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,13 @@ class courseFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            "title" => $this->faker->title,
+            "description" => $this->faker->text,
+            "duration" => 2,
+            "price" => 12.12,
+            "image" => $this->faker->imageUrl,
+            "start" => $this->faker->date,
+            "end" => $this->faker->date
         ];
     }
 }

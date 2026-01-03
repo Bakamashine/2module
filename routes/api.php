@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CourseControllerApi;
+use App\Http\Controllers\LessonController;
+use App\Http\Controllers\LessonControllerApi;
 use App\Http\Controllers\UserControllerApi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,8 +18,16 @@ Route::controller(UserControllerApi::class)
     });
 
 Route::middleware("auth:sanctum")
-->controller(CourseControllerApi::class)
 ->prefix("courses")
 ->group(function () {
-    Route::get("", "GetAll");
+    Route::get("", [CourseControllerApi::class, 'GetAll']);
+    Route::get("{course}", [LessonControllerApi::class, "GetAll"]);
 });
+
+// Route::middleware("auth:sanctum")
+//     ->controller(CourseControllerApi::class)
+//     ->prefix("courses")
+//     ->group(function () {
+//         Route::get("", "GetAll");
+//         Route::get("{course}", "GetById");
+//     });

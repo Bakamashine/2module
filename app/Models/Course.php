@@ -21,4 +21,8 @@ class Course extends Model
         "start",
         "end",
     ];
+
+    public function lesson() {
+        return $this->hasMany(Lesson::class);
+    }
 }

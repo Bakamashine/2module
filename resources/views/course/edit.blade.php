@@ -4,7 +4,7 @@
     <h1 class="text-center">Redact {{ $course->title }}</h1>
     <form method="post" action="{{ route('course.update', ['course' => $course->id]) }}" enctype="multipart/form-data">
         @csrf
-        @method("put")
+        @method('put')
         <div class="mb-3">
             <label for="title">
                 Title
@@ -54,8 +54,8 @@
         <div class="mb-3">
             <label for="image">Pick image</label>
             <div>
-            <p>Old image: </p>
-            <img src="{{ $course->image }}" class="course-img-size" />
+                <p>Old image: </p>
+                <img src="{{ asset('storage') . '/' . $course->image }}" class="course-img-size" />
             </div>
             <input type="file" class="" name="image">
             @error('image')
