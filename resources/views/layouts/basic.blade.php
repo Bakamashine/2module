@@ -27,14 +27,16 @@
                     });
                 </script>
                 <a href="{{ route('order.create') }}">Create Order</a>
+                <a href="{{ route('lesson.create') }}">Create Lesson</a>
             @endauth
             @guest
                 <a href="{{ route('register.index') }}">Register</a>
-                <a href="{{ route('login.index') }}">Login</a>
+                <a href="{{ route('login') }}">Login</a>
             @endguest
+            <a href="{{ route('index') }}">Main page</a>
         </nav>
         @auth
-                <h1 class="text-center">Добро пожаловать: {{ Auth::user()->email }}</h1>
+            <h1 class="text-center">Добро пожаловать: {{ Auth::user()->email }}</h1>
         @endauth
     </header>
     @yield('content')

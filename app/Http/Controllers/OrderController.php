@@ -15,13 +15,6 @@ class OrderController extends Controller
     ) {
 
     }
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -41,13 +34,12 @@ class OrderController extends Controller
             "description",
             "duration",
             "price",
-            "image",
             "start",
             "end",
         ]));
         $order->image = $this->imageService->UploadImage($request, "image", "order");
         $order->save();
-        return redirect("/");
+        return redirect()->route("order.index");
     }
 
     /**
@@ -63,7 +55,7 @@ class OrderController extends Controller
      */
     public function edit(Order $order)
     {
-        //
+        return view("order.edit", ['order' => $order]);
     }
 
     /**
@@ -71,7 +63,20 @@ class OrderController extends Controller
      */
     public function update(UpdateOrderRequest $request, Order $order)
     {
-        //
+        // $order->fill()
+        if ($request->hasFile("image")) {
+            $order->image = $this->imageService->UploadImage($request, "image", "order");
+        }
+        $order->fill($request->only([
+            "title",
+            "description",
+            "duration",
+            "price",
+            "start",
+            "end",
+        ]));
+        $order->save();
+        return redirect()->route("order.index");
     }
 
     /**
@@ -80,5 +85,11 @@ class OrderController extends Controller
     public function destroy(Order $order)
     {
         $order->delete();
+        return back();
+    }
+
+    public function index()
+    {
+        return view("order.index", ['order' => Order::paginate(5)]);
     }
 }

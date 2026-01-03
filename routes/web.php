@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -12,17 +13,19 @@ Route::controller(AdminController::class)
 
 Route::middleware("auth")
     ->group(function () {
-        Route::controller(OrderController::class)
-            ->prefix("order")
-            ->name("order.")
-            ->group(function () {
-                Route::get("", "index")->name('index');
-                Route::get("/create", "create")->name("create");
-                Route::post("", 'store')->name("store");
-                Route::get("/edit", 'edit')->name("edit");
-                Route::put("", 'update')->name("update");
-                Route::delete("", "destroy")->name("destroy");
-            });
+        // Route::controller(OrderController::class)
+        //     ->prefix("order")
+        //     ->name("order.")
+        //     ->group(function () {
+        //         Route::get("", "index")->name('index');
+        //         Route::get("/create", "create")->name("create");
+        //         Route::post("", 'store')->name("store");
+        //         Route::get("{order}/edit", 'edit')->name("edit");
+        //         Route::put("{order}", 'update')->name("update");
+        //         Route::delete("{order}", "destroy")->name("destroy");
+        //     });
+        Route::resource("order", OrderController::class);
+        Route::resource("lesson", LessonController::class);
     });
 
 Route::controller(UserController::class)
@@ -34,12 +37,11 @@ Route::controller(UserController::class)
                 Route::get("", 'RegisterView')->name("store");
                 Route::post("", 'Register')->name("index");
             });
-        Route::name("login.")
-            ->prefix("login")
+        Route::prefix("login")
             ->middleware("guest")
             ->group(function () {
-                Route::get("", 'loginView')->name("index");
-                Route::post("", "Login")->name("store");
+                Route::get("", 'loginView')->name("login");
+                Route::post("", "Login")->name("login.store");
             });
 
         Route::post("/logout", "Logout")
