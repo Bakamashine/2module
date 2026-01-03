@@ -15,3 +15,14 @@
     width: 300px;
     height: 300px;
 }
+
+.admin-order {
+    display: flex;
+    justify-content: space-around;
+}
+
+.admin-order-box {
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid black;
+}
