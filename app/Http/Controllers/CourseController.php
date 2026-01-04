@@ -29,15 +29,6 @@ class CourseController extends Controller
      */
     public function store(StoreCourseRequest $request)
     {
-        // $course = Course::create($request->only([
-        //     "title",
-        //     "description",
-        //     "duration",
-        //     "price",
-        //     "start",
-        //     "end",
-        // ]));
-        // $course->image = $this->imageService->UploadImage($request, "image", "cources");
         $course = Course::create([
             "title" => $request->title,
             "description" => $request->description,
@@ -47,7 +38,6 @@ class CourseController extends Controller
             "end" => $request->end,
             "image" => $this->imageService->UploadImage($request,"image", "course"),
         ]);
-        // $course->save();
         return redirect()->route("course.index");
     }
 

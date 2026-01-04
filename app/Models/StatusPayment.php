@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class StatusPayment extends Model
 {
 
+    public $timestamps = false;
+    protected $fillable = [
+        "status",
+        "course_id",
+    ];
+
     public function student() {
         return $this->belongsTo(Student::class);
     }

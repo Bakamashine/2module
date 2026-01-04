@@ -22,11 +22,13 @@ class Course extends Model
         "end",
     ];
 
-    public function lesson() {
+    public function lesson()
+    {
         return $this->hasMany(Lesson::class);
     }
-public function payment() {
-    return $this->hasMany(StatusPayment::class);
-}
+    public function payment()
+    {
+        return $this->hasMany(StatusPayment::class);
+    }
 }
 

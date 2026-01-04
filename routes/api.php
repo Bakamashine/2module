@@ -24,3 +24,14 @@ Route::middleware("auth:sanctum")
         Route::get("{course}", [LessonControllerApi::class, "GetAll"]);
         Route::post("{course}/buy", [CourseControllerApi::class, 'Buy']);
     });
+
+Route::middleware("auth:sanctum")
+->prefix("orders")
+->group(function () {
+    Route::get("", [CourseControllerApi::class, 'GetStudentCourse']);
+    Route::get("/{statusPayment}", [CourseControllerApi::class, 'CancelOrderCourse']);
+});
+
+Route::post("/payment-webhook", [CourseControllerApi::class, 'webHook'])
+    ;
+    // ->middleware("auth:sanctum");
