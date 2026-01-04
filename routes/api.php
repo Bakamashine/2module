@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourseControllerApi;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LessonControllerApi;
@@ -35,3 +36,6 @@ Route::middleware("auth:sanctum")
 Route::post("/payment-webhook", [CourseControllerApi::class, 'webHook'])
     ;
     // ->middleware("auth:sanctum");
+
+Route::post("/create-sertificate", [CertificateController::class, 'CreateCert']);
+Route::post("/check-sertificate", [CertificateController::class, 'SearchCert']);

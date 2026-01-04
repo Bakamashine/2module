@@ -27,26 +27,26 @@ class CourseControllerApi extends Controller
 
     public function Buy(Request $request, Course $course)
     {
-        $request->user()->payment()->create([
+        $currentResponse = $request->user()->payment()->create([
             "status" => StatusPaymentEnum::WaitingPayment,
             "course_id" => $course->id
         ]);
 
         return response()->json([
-            "pay_url" => self::$webHookUrl . "?id=$course->id" . "&url=" . env("APP_URL"),
+            "pay_url" => self::$webHookUrl . "?id=$currentResponse->id" . "&url=" . env("APP_URL"),
         ]);
     }
 
     public function webHook(WebHookRequest $request)
     {
         $status = (boolean) $request->status;
-        $statusPayment = StatusPayment::find($request->id);
+        $statusPayment = StatusPayment::findOrFail($request->id);
         if ($status) {
-            $statusPayment->status = StatusPaymentEnum::Bought;
+            $statusPayment->status = StatusPaymentEnum::Bought->value;
             $statusPayment->save();
             return response()->noContent();
         } else {
-            $statusPayment->status = StatusPaymentEnum::Error;
+            $statusPayment->status = StatusPaymentEnum::Error->value;
             $statusPayment->save();
             return response()->noContent(402);
         }

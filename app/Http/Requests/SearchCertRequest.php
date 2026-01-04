@@ -2,11 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class RegisterApiRequest extends FormRequest
+class SearchCertRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +22,7 @@ class RegisterApiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "name" => ['nullable', 'string', "max:50"],
-            'email' => ['required', 'email', 'max:255', 'string', Rule::unique(User::class)],
-            'password' => ['required', 'string', 'max:255', 'min:8']
+            "sertikate_number" => ['required', 'string']
         ];
     }
 }

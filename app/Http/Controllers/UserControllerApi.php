@@ -16,6 +16,7 @@ class UserControllerApi extends Controller
     public function Register(RegisterApiRequest $request)
     {
         $user = Student::create([
+            "name" => $request->name,
             "email" => $request->email,
             "password" => bcrypt($request->password)
         ]);
@@ -29,7 +30,7 @@ class UserControllerApi extends Controller
         $user = Student::firstWhere("email", $request->email);
         if ($user && Hash::check($request->password, $user->password)) {
             return response()->json([
-                "token" => $user->createToken("user")->plainTextToken
+                "token" => $user->createToken("student")->plainTextToken
             ]);
         } else {
             return response()->json([

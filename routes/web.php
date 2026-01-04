@@ -2,6 +2,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,13 @@ Route::middleware("auth")
     ->group(function () {
         Route::resource("course", CourseController::class);
         Route::resource("lesson", LessonController::class);
+        Route::controller(StudentController::class)
+        ->name("student.")
+        ->prefix("student")
+        ->group(function () {
+            Route::get("", 'index')->name("index");
+
+        });
     });
 
 Route::controller(UserController::class)
