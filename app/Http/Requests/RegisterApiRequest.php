@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -25,7 +26,7 @@ class RegisterApiRequest extends FormRequest
     {
         return [
             "name" => ['nullable', 'string', "max:50"],
-            'email' => ['required', 'email', 'max:255', 'string', Rule::unique(User::class)],
+            'email' => ['required', 'email', 'max:255', 'string', Rule::unique(Student::class)],
             'password' => ['required', 'string', 'max:255', 'min:8']
         ];
     }
