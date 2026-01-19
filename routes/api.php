@@ -5,6 +5,7 @@ use App\Http\Controllers\CourseControllerApi;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LessonControllerApi;
 use App\Http\Controllers\UserControllerApi;
+use App\Http\Controllers\UserControllerApiWebSocket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -12,7 +13,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::controller(UserControllerApi::class)
+Route::controller(UserControllerApiWebSocket::class)
     ->group(function () {
         Route::post("registr", "Register");
         Route::post("login", "Login");
