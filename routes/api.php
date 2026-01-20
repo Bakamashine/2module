@@ -4,6 +4,7 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\CourseControllerApi;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LessonControllerApi;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserControllerApi;
 use App\Http\Controllers\UserControllerApiWebSocket;
 use Illuminate\Http\Request;
@@ -40,3 +41,10 @@ Route::post("/payment-webhook", [CourseControllerApi::class, 'webHook'])
 
 Route::post("/create-sertificate", [CertificateController::class, 'CreateCert']);
 Route::post("/check-sertificate", [CertificateController::class, 'SearchCert']);
+
+
+Route::controller(RoomController::class)
+->middleware("auth:sanctum")
+->group(function () {
+    Route::get("/rooms", 'get');
+});
